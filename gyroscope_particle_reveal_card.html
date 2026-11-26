@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gyroscope Test</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0c;
+      color: #00ff66;
+      font-family: monospace;
+      font-size: 1.2rem;
+    }
+    #box {
+      width: 120px;
+      height: 120px;
+      background: #00ff6622;
+      border: 2px solid #00ff66;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      transition: transform 0.05s linear;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00ff66;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <div id="output">Tilt your phone...</div>
+  <button id="btn">Start Sensor (iOS)</button>
+
+  <script>
+    const output = document.getElementById("output");
+    const box = document.getElementById("box");
+    const btn = document.getElementById("btn");
+
+    function handleOrientation(e) {
+      const alpha = e.alpha ? e.alpha.toFixed(1) : 0; // Z-axis (compass)
+      const beta  = e.beta  ? e.beta.toFixed(1)  : 0; // X-axis (front-back tilt)
+      const gamma = e.gamma ? e.gamma.toFixed(1) : 0; // Y-axis (left-right tilt)
+
+      output.innerHTML = `Alpha (Z): ${alpha}°<br>Beta (X): ${beta}°<br>Gamma (Y): ${gamma}°`;
+      box.style.transform = `perspective(400px) rotateX(${-beta}deg) rotateY(${gamma}deg)`;
+    }
+
+    function startSensor() {
+      if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
+        DeviceOrientationEvent.requestPermission().then(state => {
+          if (state === "granted") window.addEventListener("deviceorientation", handleOrientation);
+        });
+      } else {
+        window.addEventListener("deviceorientation", handleOrientation);
+      }
+    }
+
+    startSensor(); // Auto-starts on Android
+    btn.addEventListener("click", startSensor);
+  </script>
+</body>
+</html>
