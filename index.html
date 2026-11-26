@@ -41,7 +41,6 @@
       font-family: 'Rajdhani', sans-serif;
     }
 
-    /* Futuristic Tech Grid Background */
     .tech-grid {
       background-size: 36px 36px;
       background-image: 
@@ -49,12 +48,10 @@
         linear-gradient(to bottom, rgba(0, 229, 255, 0.045) 1px, transparent 1px);
     }
 
-    /* Radial Ambient Glow */
     .ambient-glow {
       background: radial-gradient(circle at 50% 45%, rgba(0, 255, 102, 0.14) 0%, rgba(0, 229, 255, 0.05) 38%, rgba(5, 8, 10, 0.96) 78%);
     }
 
-    /* Holographic Card & Shimmer */
     .holo-card {
       background: linear-gradient(145deg, rgba(13, 21, 27, 0.88) 0%, rgba(7, 12, 16, 0.94) 100%);
       border: 1px solid rgba(0, 255, 102, 0.32);
@@ -96,7 +93,6 @@
       100% { background-position: 140% 0%; }
     }
 
-    /* Neon Text Glow */
     .neon-title {
       text-shadow:
         0 0 12px rgba(0, 255, 102, 0.55),
@@ -107,7 +103,6 @@
       text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
     }
 
-    /* Corner HUD Brackets */
     .hud-bracket {
       position: absolute;
       width: 16px;
@@ -116,7 +111,6 @@
       pointer-events: none;
     }
 
-    /* Scanline Subtle Texture */
     .scanlines {
       background: linear-gradient(
         to bottom,
@@ -128,7 +122,6 @@
       background-size: 100% 4px;
     }
 
-    /* Canvas Layer */
     #particleCanvas {
       position: fixed;
       inset: 0;
@@ -138,7 +131,6 @@
       touch-action: none;
     }
 
-    /* Pulse Ring Animation */
     @keyframes pulseRing {
       0% { transform: scale(0.95); opacity: 0.75; }
       70% { transform: scale(1.25); opacity: 0; }
@@ -156,20 +148,18 @@
 </head>
 <body class="relative w-full h-full overflow-hidden bg-[#05080A]">
 
-  <!-- Layer 0: Tech Grid & Ambient Background -->
   <div class="fixed inset-0 tech-grid ambient-glow pointer-events-none z-0"></div>
   <div class="fixed inset-0 scanlines pointer-events-none z-10"></div>
 
-  <!-- Top Minimal Status Bar (HUD) -->
+  <!-- Top HUD -->
   <header class="fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-6 pt-4 pb-2 pointer-events-none">
     <div class="flex items-center gap-2">
       <span class="inline-block w-2 h-2 rounded-full bg-[#00FF66] shadow-[0_0_10px_#00FF66] animate-pulse"></span>
-      <span class="font-rajdhani text-xs sm:text-sm tracking-[0.22em] text-emerald-300/80 uppercase font-semibold">
-        GYRO-REVEAL // V2.6
+      <span id="tiltStatusText" class="font-rajdhani text-xs sm:text-sm tracking-[0.22em] text-emerald-300/80 uppercase font-semibold">
+        TILT: NEUTRAL
       </span>
     </div>
 
-    <!-- Live Reveal Progress Pill -->
     <div class="flex items-center gap-2.5 bg-[#080E12]/80 border border-[#00FF66]/25 backdrop-blur-md px-3 py-1.5 rounded-full">
       <div class="w-16 sm:w-24 h-1.5 bg-slate-800 rounded-full overflow-hidden">
         <div id="revealBar" class="h-full bg-gradient-to-r from-[#00FF66] to-[#00E5FF] transition-all duration-150" style="width: 0%;"></div>
@@ -178,27 +168,24 @@
     </div>
   </header>
 
-  <!-- Layer 1: Underlying Futuristic National Day Reveal Card -->
+  <!-- Underlying Reveal Card -->
   <main id="cardStage" class="fixed inset-0 z-10 flex items-center justify-center p-5 sm:p-8 pointer-events-none" style="perspective: 1100px;">
     <div id="revealCard" class="holo-card relative w-full max-w-[400px] rounded-3xl p-6 sm:p-8 overflow-hidden">
-      
-      <!-- Holographic Shimmer Overlay -->
       <div class="holo-shimmer absolute inset-0 pointer-events-none rounded-3xl"></div>
 
-      <!-- Corner HUD Brackets -->
       <div class="hud-bracket top-3 left-3 border-t-2 border-l-2 rounded-tl-md"></div>
       <div class="hud-bracket top-3 right-3 border-t-2 border-r-2 rounded-tr-md"></div>
       <div class="hud-bracket bottom-3 left-3 border-b-2 border-l-2 rounded-bl-md"></div>
       <div class="hud-bracket bottom-3 right-3 border-b-2 border-r-2 rounded-br-md"></div>
 
-      <!-- Card Header: Infinix Geometric Wordmark + Badge -->
+      <!-- Card Header -->
       <div class="relative z-10 flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-        <!-- Custom Futuristic INFINIX SVG Wordmark -->
         <div class="flex items-center gap-2.5">
-          <svg class="w-7 h-7 text-[#00FF66] drop-shadow-[0_0_8px_rgba(0,255,102,0.7)]" viewBox="0 0 36 36" fill="none">
-            <path d="M4 18L13 7H20L11 18L20 29H13L4 18Z" fill="currentColor"/>
-            <path d="M32 18L23 7H16L25 18L16 29H23L32 18Z" fill="#00E5FF" fill-opacity="0.85"/>
-          </svg>
+          <img
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAkCAYAAAD/yagrAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJ0SURBVHgB7ViLcdswDIVyGcAbhBvUnaDKBt7A7gRxJ4g3aDaQO0HbCahOkGwgdYKoE7wCR/qqKgBFSb42vsu7w8kmfk8kSMImemUA4PASzRVdCN6InhsXQ7SgVwjZUHSpmDSj/KYlP9YsNyyrONyx/GR5Koqipv8FIcfymeUZ4xCb6p8uXTx4v2I+qnMSLgySG35U9Gd556Jl+cQl8S3XgXNLznWO4R3Oj3vKBNvutADXA6MtPx5GYrUsde+7izOQmv0Dx255Zr/QUiDUZGrDeIRdb/nLpjsm/CW2y+Cx0Zz7Bk0iQUmZiEtnxfIZ/qVJFEZdxISOJgJhdRoj5o4WELWCju8+O+Eaein5WURjQA0HWgiJYcQuaSJR6Z42hs+RlkNOkE4Z3yR8nDYox9MHZfzIR0mrOQxnI3W/s65j++/8cTtQvaNp6ISoUxQ/NGuEjeUHYzUTuiUbNb0k6hL2mq67MhQt5UNq6iahf1LGUpeDpmuvDePGGO+M8fcUWj0NLctHyodWFr/IOELMYwn6UTZ27WbD4HOQpddmqUzE0up3i9D1LCUpp4EWpxal1nP6VDDoONByoo9K3OeTcm8kdkawFezmpaSZgN1eVv3EmDir1o3TYF5vsIUN1zf0htG9EXgFuz+Q8R1lQnLARjU0LhPGFtk10vAIm8N60T3slz29sNOcHxJOleYEuz0c4jES90iTO8FuspFeTkRdqfjtcV40GGsvMf5zpDT8SuTN1Bg8cjcjQu01SpAm4yWPmAeZnD1NRUzqB8Gyrske4SaDoEcondFbrRhJuuPHHYVr7dbqURP+UmuO/v5DoY0i/1V1ubF+A0ElFWyea7F2AAAAAElFTkSuQmCC"
+            alt="Infinix Logo"
+            class="h-6 sm:h-7 w-auto object-contain drop-shadow-[0_0_8px_rgba(0,255,102,0.75)]"
+          />
           <span class="font-orbitron font-black tracking-[0.22em] text-lg sm:text-xl text-white">
             INFINIX
           </span>
@@ -209,9 +196,8 @@
         </span>
       </div>
 
-      <!-- Centerpiece: National Day Futuristic Emblem & Typography -->
+      <!-- Centerpiece -->
       <div class="relative z-10 text-center my-4">
-        <!-- Geometric Emblem Ring -->
         <div class="relative mx-auto w-20 h-20 mb-5 flex items-center justify-center">
           <div class="absolute inset-0 rounded-full border border-dashed border-[#00E5FF]/50 animate-[spin_14s_linear_infinite]"></div>
           <div class="absolute inset-1.5 rounded-full border border-[#00FF66]/60 animate-[spin_9s_linear_infinite_reverse]"></div>
@@ -238,7 +224,7 @@
         </p>
       </div>
 
-      <!-- Card Footer: Tech Motto & Telemetry -->
+      <!-- Card Footer -->
       <div class="relative z-10 mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
         <div>
           <div class="font-orbitron text-[11px] sm:text-xs font-extrabold tracking-[0.2em] text-[#00FF66]">
@@ -249,7 +235,6 @@
           </div>
         </div>
 
-        <!-- Mini Tech Barcode Graphic -->
         <div class="flex items-end gap-[3px] h-6 opacity-75">
           <span class="w-[2px] h-full bg-[#00FF66]"></span>
           <span class="w-[4px] h-4 bg-[#00E5FF]"></span>
@@ -259,31 +244,25 @@
           <span class="w-[4px] h-4 bg-[#00E5FF]"></span>
         </div>
       </div>
-
     </div>
   </main>
 
-  <!-- Layer 2: Interactive 3D Particle Field Canvas -->
+  <!-- Interactive Particle Field Canvas -->
   <canvas id="particleCanvas"></canvas>
 
-  <!-- Layer 3: Floating Bottom Controls & Guidance -->
+  <!-- Floating Bottom Controls -->
   <footer class="fixed bottom-0 left-0 right-0 z-30 flex flex-col items-center justify-end pb-5 sm:pb-7 px-4 pointer-events-none gap-3">
-    
-    <!-- Dynamic Guidance Pill -->
     <div id="hintBanner" class="pointer-events-auto flex items-center gap-2 bg-[#070D11]/85 border border-[#00E5FF]/30 backdrop-blur-md px-4 py-2 rounded-full shadow-lg transition-all duration-300">
       <svg class="w-4 h-4 text-[#00FF66] shrink-0 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <rect x="6" y="2" width="12" height="20" rx="2" ry="2"></rect>
         <path d="M12 18h.01"></path>
       </svg>
       <span id="hintText" class="font-rajdhani text-xs sm:text-sm font-semibold tracking-wider text-slate-200 uppercase">
-        Tilt phone or swipe screen to disperse particles
+        Tilt phone or drag to sweep particles into a corner
       </span>
     </div>
 
-    <!-- Action Buttons Row -->
     <div class="pointer-events-auto flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-      
-      <!-- iOS 13+ Gyroscope Permission Button (Shown dynamically when needed) -->
       <button id="enableGyroBtn" class="hidden pulse-ring relative items-center gap-2 px-4 py-2.5 rounded-full bg-[#00FF66] text-[#05080A] font-orbitron text-xs font-extrabold tracking-wider uppercase shadow-[0_0_24px_rgba(0,255,102,0.5)] active:scale-95 transition-transform cursor-pointer">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
           <circle cx="12" cy="12" r="9"></circle>
@@ -292,538 +271,503 @@
         <span>Enable Gyroscope</span>
       </button>
 
-      <!-- Simulate Tilt / Wind Burst Button (Great for Desktop & Instant Testing) -->
       <button id="simulateTiltBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0B141A]/90 hover:bg-[#112029] border border-[#00E5FF]/45 text-[#00E5FF] font-orbitron text-xs font-bold tracking-wider uppercase shadow-[0_0_18px_rgba(0,229,255,0.2)] active:scale-95 transition-all cursor-pointer">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-          <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
+          <path d="M7 7l10 10M17 7v10H7"></path>
         </svg>
-        <span>Simulate Tilt</span>
+        <span id="simulateTiltLabel">Tilt to Corner</span>
       </button>
 
-      <!-- Reset / Replay Particles Button -->
       <button id="resetBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#0B141A]/90 hover:bg-[#112029] border border-[#00FF66]/45 text-[#00FF66] font-orbitron text-xs font-bold tracking-wider uppercase shadow-[0_0_18px_rgba(0,255,102,0.18)] active:scale-95 transition-all cursor-pointer">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
           <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
           <path d="M3 3v5h5"></path>
         </svg>
-        <span>Replay</span>
+        <span>Reset</span>
       </button>
-
     </div>
   </footer>
 
   <script>
-    /**
-     * Infinix National Day — Gyroscope 3D Particle Reveal Engine
-     * Features:
-     * - True 3D perspective projection (x, y, z depth, focal length scaling)
-     * - DeviceOrientationEvent gyroscope tilt physics + iOS 13+ permission support
-     * - Smooth touch/mouse drag & hover repulsion field
-     * - Simulated tilt wave generator for desktop testing
-     * - Real-time reveal percentage tracking & celebratory light burst > 70%
-     */
-
     (function () {
       const canvas = document.getElementById('particleCanvas');
       const ctx = canvas.getContext('2d');
       const revealCard = document.getElementById('revealCard');
       const revealBar = document.getElementById('revealBar');
       const revealPercentEl = document.getElementById('revealPercent');
+      const tiltStatusText = document.getElementById('tiltStatusText');
       const hintText = document.getElementById('hintText');
       const enableGyroBtn = document.getElementById('enableGyroBtn');
       const simulateTiltBtn = document.getElementById('simulateTiltBtn');
+      const simulateTiltLabel = document.getElementById('simulateTiltLabel');
       const resetBtn = document.getElementById('resetBtn');
 
       let width = 0;
       let height = 0;
       let dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-      // Particle & Physics Configuration
-      const FOCAL_LENGTH = 520;
+      const maskCanvas = document.createElement('canvas');
+      const maskCtx = maskCanvas.getContext('2d');
+
       let particles = [];
       let burstParticles = [];
       let celebrationTriggered = false;
       let revealRatio = 0;
 
-      // Gyroscope & Input State
-      const gyro = {
-        active: false,
-        beta: 0,      // front-to-back tilt (-180 to 180)
-        gamma: 0,     // left-to-right tilt (-90 to 90)
-        baseBeta: null,
-        baseGamma: null,
-        forceX: 0,
-        forceY: 0
-      };
-
-      // Simulated tilt wave state
-      const simTilt = {
-        active: false,
-        timer: 0,
-        angle: 0
-      };
-
-      // Pointer / Touch interaction state
-      const pointer = {
-        x: -9999,
-        y: -9999,
-        vx: 0,
-        vy: 0,
-        active: false
-      };
-
-      // Color palette matching Infinix futuristic theme
       const PALETTE = [
-        { r: 0, g: 255, b: 102 },   // Infinix Neon Green (#00FF66)
-        { r: 0, g: 255, b: 102 },   // Weighted higher for brand dominance
-        { r: 0, g: 229, b: 255 },   // Cyber Cyan (#00E5FF)
-        { r: 110, g: 255, b: 175 }, // Mint Plasma
-        { r: 220, g: 255, b: 245 }  // Bright Core Spark
+        { r: 0, g: 255, b: 102 },   // #00FF66
+        { r: 0, g: 229, b: 255 },   // #00E5FF
+        { r: 130, g: 255, b: 185 }, // Bright Mint
+        { r: 0, g: 210, b: 120 }    // Deep Emerald Neon
       ];
 
-      /**
-       * Resize canvas responsively and adjust particle density
-       */
+      const gyro = {
+        active: false,
+        baseBeta: null,
+        baseGamma: null,
+        gx: 0,
+        gy: 0,
+        targetGx: 0,
+        targetGy: 0
+      };
+
+      const pointer = {
+        active: false,
+        x: 0,
+        y: 0
+      };
+
+      let demoCornerIndex = -1;
+      const DEMO_CORNERS = [
+        { gx: 0.85, gy: 0.85, label: 'BOTTOM-RIGHT' },
+        { gx: -0.85, gy: 0.85, label: 'BOTTOM-LEFT' },
+        { gx: -0.85, gy: -0.85, label: 'TOP-LEFT' },
+        { gx: 0.85, gy: -0.85, label: 'TOP-RIGHT' }
+      ];
+
       function resizeCanvas() {
         width = window.innerWidth;
         height = window.innerHeight;
         dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        maskCanvas.width = Math.floor(width * dpr);
+        maskCanvas.height = Math.floor(height * dpr);
+        maskCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
-      /**
-       * Create a single 3D particle covering the viewport
-       */
       function createParticle(index, total) {
-        // Distribute across screen with higher density in center covering the card
-        const spreadX = width * 0.92;
-        const spreadY = height * 0.88;
+        const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+        const t = (index + 0.5) / total;
+        const maxRadius = Math.hypot(width * 0.52, height * 0.52);
+        const r = Math.pow(t, 0.62) * maxRadius;
+        const theta = index * goldenAngle;
 
-        // Mix uniform coverage with concentrated center cluster
-        const useCluster = index < total * 0.65;
-        let x, y;
+        const homeX = width * 0.5 + Math.cos(theta) * r * (width / Math.max(width, height) * 1.15);
+        const homeY = height * 0.5 + Math.sin(theta) * r * (height / Math.max(width, height) * 1.15);
 
-        if (useCluster) {
-          const angle = Math.random() * Math.PI * 2;
-          const radius = Math.pow(Math.random(), 0.65) * Math.min(width * 0.46, 260);
-          x = Math.cos(angle) * radius;
-          y = Math.sin(angle) * radius * 1.18;
-        } else {
-          x = (Math.random() - 0.5) * spreadX;
-          y = (Math.random() - 0.5) * spreadY;
-        }
-
-        const z = (Math.random() - 0.3) * 380; // Depth from -114 to +266
-        const color = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+        const color = PALETTE[index % PALETTE.length];
+        const radius = 3.2 + Math.random() * 3.4;
 
         return {
-          x,
-          y,
-          z,
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
-          vz: (Math.random() - 0.5) * 0.5,
-          baseSize: 2.4 + Math.random() * 4.4,
-          color,
-          alpha: 0.72 + Math.random() * 0.28,
+          x: homeX,
+          y: homeY,
+          homeX,
+          homeY,
+          vx: 0,
+          vy: 0,
+          radius,
+          mass: 0.75 + Math.random() * 0.55,
+          alpha: 0.78 + Math.random() * 0.22,
           phase: Math.random() * Math.PI * 2,
-          swirlSpeed: 0.008 + Math.random() * 0.015,
-          dispersed: false
+          swirlSpeed: 0.015 + Math.random() * 0.025,
+          color
         };
       }
 
-      /**
-       * Initialize or Reset all particles
-       */
       function initParticles() {
-        const isMobile = width < 640;
-        const count = isMobile ? 440 : 620;
         particles = [];
         burstParticles = [];
         celebrationTriggered = false;
         revealRatio = 0;
-
-        // Re-calibrate gyroscope neutral baseline on reset
-        gyro.baseBeta = null;
-        gyro.baseGamma = null;
-
         revealCard.classList.remove('revealed-glow');
         updateProgressUI(0);
 
+        const area = width * height;
+        const count = Math.max(260, Math.min(540, Math.floor(area / 1650)));
         for (let i = 0; i < count; i++) {
           particles.push(createParticle(i, count));
         }
       }
 
-      /**
-       * Trigger celebratory light burst when >70% of particles are cleared
-       */
+      function resolveParticleCollisions() {
+        const cellSize = 18;
+        const cols = Math.ceil(width / cellSize) + 1;
+        const grid = new Map();
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const key = Math.floor(p.x / cellSize) + Math.floor(p.y / cellSize) * cols;
+          let bucket = grid.get(key);
+          if (!bucket) {
+            bucket = [];
+            grid.set(key, bucket);
+          }
+          bucket.push(i);
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+          const p1 = particles[i];
+          const cx = Math.floor(p1.x / cellSize);
+          const cy = Math.floor(p1.y / cellSize);
+
+          for (let dy = -1; dy <= 1; dy++) {
+            for (let dx = -1; dx <= 1; dx++) {
+              const bucket = grid.get((cx + dx) + (cy + dy) * cols);
+              if (!bucket) continue;
+
+              for (let k = 0; k < bucket.length; k++) {
+                const j = bucket[k];
+                if (j <= i) continue;
+                const p2 = particles[j];
+
+                const rx = p2.x - p1.x;
+                const ry = p2.y - p1.y;
+                const distSq = rx * rx + ry * ry;
+                const minDist = (p1.radius + p2.radius) * 0.78;
+
+                if (distSq > 0.0001 && distSq < minDist * minDist) {
+                  const dist = Math.sqrt(distSq);
+                  const overlap = (minDist - dist) * 0.28;
+                  const nx = rx / dist;
+                  const ny = ry / dist;
+
+                  p1.x -= nx * overlap;
+                  p1.y -= ny * overlap;
+                  p2.x += nx * overlap;
+                  p2.y += ny * overlap;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      function updateProgressUI(pct) {
+        const clamped = Math.min(100, Math.max(0, Math.round(pct)));
+        revealBar.style.width = `${clamped}%`;
+        revealPercentEl.textContent = `${clamped}%`;
+      }
+
       function triggerCelebrationBurst() {
-        if (celebrationTriggered) return;
         celebrationTriggered = true;
-
         revealCard.classList.add('revealed-glow');
-        hintText.textContent = 'National Day Greeting Unlocked! Tilt to explore 3D depth';
+        hintText.textContent = 'Happy National Day! Tilt flat or reset stardust';
 
-        const burstCount = 95;
-        for (let i = 0; i < burstCount; i++) {
-          const angle = (Math.PI * 2 * i) / burstCount + (Math.random() - 0.5) * 0.2;
-          const speed = 3.5 + Math.random() * 9.5;
-          const color = i % 2 === 0 ? { r: 0, g: 255, b: 102 } : { r: 0, g: 229, b: 255 };
+        const cx = width * 0.5;
+        const cy = height * 0.5;
+        for (let i = 0; i < 65; i++) {
+          const angle = (Math.PI * 2 * i) / 65 + Math.random() * 0.2;
+          const speed = 2.5 + Math.random() * 5.5;
           burstParticles.push({
-            x: 0,
-            y: 0,
-            z: (Math.random() - 0.5) * 120,
+            x: cx,
+            y: cy,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
-            vz: (Math.random() - 0.5) * 6,
-            size: 2 + Math.random() * 3.5,
-            life: 1.0,
-            decay: 0.014 + Math.random() * 0.014,
-            color
+            radius: 2 + Math.random() * 3,
+            alpha: 1,
+            color: PALETTE[i % PALETTE.length]
           });
         }
       }
 
-      /**
-       * Update UI progress bar & percentage
-       */
-      function updateProgressUI(pct) {
-        const clamped = Math.min(100, Math.max(0, Math.round(pct)));
-        revealBar.style.width = clamped + '%';
-        revealPercentEl.textContent = clamped + '%';
+      function updateTiltHUD(gx, gy) {
+        const mag = Math.hypot(gx, gy);
+        if (mag < 0.14) {
+          tiltStatusText.textContent = 'TILT: NEUTRAL';
+          return;
+        }
+        const vDir = gy > 0.18 ? 'BOTTOM' : gy < -0.18 ? 'TOP' : '';
+        const hDir = gx > 0.18 ? 'RIGHT' : gx < -0.18 ? 'LEFT' : '';
+        const dirLabel = [vDir, hDir].filter(Boolean).join('-') || 'ACTIVE';
+        tiltStatusText.textContent = `TILT: ${dirLabel}`;
       }
 
-      /**
-       * Update 3D Card Parallax based on gyroscope or pointer
-       */
-      function updateCardParallax(tiltX, tiltY) {
-        // Clamp rotation angles between -14deg and +14deg
-        const rotY = Math.max(-14, Math.min(14, tiltX * 12));
-        const rotX = Math.max(-14, Math.min(14, -tiltY * 12));
-        revealCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
-      }
-
-      /**
-       * Main Physics & Render Loop (60fps)
-       */
-      function animate(time) {
+      function animate() {
         requestAnimationFrame(animate);
 
         ctx.clearRect(0, 0, width, height);
 
-        const cx = width * 0.5;
-        const cy = height * 0.5;
-
-        // Calculate active directional tilt forces
-        let targetForceX = 0;
-        let targetForceY = 0;
-
-        if (gyro.active) {
-          targetForceX = gyro.forceX;
-          targetForceY = gyro.forceY;
+        if (pointer.active) {
+          gyro.targetGx = Math.max(-1.2, Math.min(1.2, (pointer.x - width * 0.5) / (width * 0.42)));
+          gyro.targetGy = Math.max(-1.2, Math.min(1.2, (pointer.y - height * 0.5) / (height * 0.42)));
+        } else if (demoCornerIndex >= 0) {
+          gyro.targetGx = DEMO_CORNERS[demoCornerIndex].gx;
+          gyro.targetGy = DEMO_CORNERS[demoCornerIndex].gy;
+        } else if (!gyro.active) {
+          gyro.targetGx = 0;
+          gyro.targetGy = 0;
         }
 
-        // Add simulated tilt swirl wave if active
-        if (simTilt.active) {
-          simTilt.timer -= 1;
-          simTilt.angle += 0.11;
-          targetForceX += Math.cos(simTilt.angle) * 2.1;
-          targetForceY += Math.sin(simTilt.angle * 0.8) * 1.8;
-          if (simTilt.timer <= 0) {
-            simTilt.active = false;
-          }
-        }
+        gyro.gx += (gyro.targetGx - gyro.gx) * 0.12;
+        gyro.gy += (gyro.targetGy - gyro.gy) * 0.12;
 
-        // Smoothly apply card 3D parallax
-        const parallaxX = targetForceX !== 0 ? targetForceX * 0.55 : (pointer.active ? (pointer.x - cx) / cx : 0);
-        const parallaxY = targetForceY !== 0 ? targetForceY * 0.55 : (pointer.active ? (pointer.y - cy) / cy : 0);
-        updateCardParallax(parallaxX, parallaxY);
+        updateTiltHUD(gyro.gx, gyro.gy);
 
-        // Card reveal zone radius (central area covering the greeting card)
-        const clearZoneW = Math.min(width * 0.42, 210);
-        const clearZoneH = Math.min(height * 0.34, 240);
-        let clearedCount = 0;
+        const rotY = gyro.gx * 10;
+        const rotX = -gyro.gy * 10;
+        revealCard.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
 
-        // Enable additive glow bloom for particles
-        ctx.globalCompositeOperation = 'lighter';
+        const tiltMag = Math.hypot(gyro.gx, gyro.gy);
+        const isTilted = tiltMag > 0.14;
 
         for (let i = 0; i < particles.length; i++) {
           const p = particles[i];
-
-          // 1. Subtle 3D organic floating drift & swirl turbulence
           p.phase += p.swirlSpeed;
-          p.vx += Math.cos(p.phase) * 0.022;
-          p.vy += Math.sin(p.phase * 1.1) * 0.022;
-          p.vz += Math.sin(p.phase * 0.7) * 0.018;
 
-          // 2. Gyroscope / Simulated Tilt Directional Wind & Radial Dispersion
-          const tiltMagnitude = Math.hypot(targetForceX, targetForceY);
-          if (tiltMagnitude > 0.12) {
-            // Directional gravity/wind force from device tilt
-            p.vx += targetForceX * 0.42;
-            p.vy += targetForceY * 0.42;
-
-            // Outward centrifugal dispersion away from the center card
-            const distCenter = Math.hypot(p.x, p.y) || 1;
-            const radialPush = Math.min(tiltMagnitude * 0.34, 0.95);
-            p.vx += (p.x / distCenter) * radialPush;
-            p.vy += (p.y / distCenter) * radialPush;
-            p.vz -= radialPush * 0.45;
+          if (isTilted) {
+            const accel = 0.74 / p.mass;
+            p.vx += gyro.gx * accel + Math.cos(p.phase) * 0.06;
+            p.vy += gyro.gy * accel + Math.sin(p.phase) * 0.06;
+            p.vx *= 0.91;
+            p.vy *= 0.91;
+          } else {
+            const dx = p.homeX - p.x;
+            const dy = p.homeY - p.y;
+            p.vx += dx * 0.018 + Math.cos(p.phase) * 0.04;
+            p.vy += dy * 0.018 + Math.sin(p.phase) * 0.04;
+            p.vx *= 0.86;
+            p.vy *= 0.86;
           }
 
-          // 3. Touch / Mouse Repulsion Field
-          if (pointer.active) {
-            const scale = FOCAL_LENGTH / (FOCAL_LENGTH + p.z);
-            const screenX = cx + p.x * scale;
-            const screenY = cy + p.y * scale;
-            const dx = screenX - pointer.x;
-            const dy = screenY - pointer.y;
-            const dist = Math.hypot(dx, dy);
-            const repelRadius = 135;
-
-            if (dist < repelRadius && dist > 0.1) {
-              const strength = Math.pow(1 - dist / repelRadius, 1.6) * 2.8;
-              p.vx += (dx / dist) * strength + pointer.vx * 0.06;
-              p.vy += (dy / dist) * strength + pointer.vy * 0.06;
-              p.vz -= strength * 0.6;
-            }
-          }
-
-          // 4. Velocity Damping (smooth fluid drag)
-          p.vx *= 0.935;
-          p.vy *= 0.935;
-          p.vz *= 0.93;
-
-          // Integrate 3D position
           p.x += p.vx;
           p.y += p.vy;
-          p.z += p.vz;
 
-          // Keep z-depth within visible focal bounds
-          if (p.z < -260) { p.z = -260; p.vz *= -0.5; }
-          if (p.z > 360) { p.z = 360; p.vz *= -0.5; }
-
-          // Soft outer boundary containment so dispersed particles shimmer around the edges
-          const maxBoundX = width * 0.68;
-          const maxBoundY = height * 0.65;
-          if (p.x < -maxBoundX) { p.x = -maxBoundX; p.vx *= -0.4; }
-          if (p.x > maxBoundX) { p.x = maxBoundX; p.vx *= -0.4; }
-          if (p.y < -maxBoundY) { p.y = -maxBoundY; p.vy *= -0.4; }
-          if (p.y > maxBoundY) { p.y = maxBoundY; p.vy *= -0.4; }
-
-          // Check if particle has cleared out of the central card zone
-          if (Math.abs(p.x) > clearZoneW || Math.abs(p.y) > clearZoneH) {
-            clearedCount++;
+          const pad = p.radius + 4;
+          if (p.x < pad) {
+            p.x = pad;
+            p.vx *= -0.35;
+          } else if (p.x > width - pad) {
+            p.x = width - pad;
+            p.vx *= -0.35;
           }
 
-          // 5. 3D Perspective Projection
-          const perspective = FOCAL_LENGTH / (FOCAL_LENGTH + p.z);
-          if (perspective <= 0.05) continue;
+          if (p.y < pad) {
+            p.y = pad;
+            p.vy *= -0.35;
+          } else if (p.y > height - pad) {
+            p.y = height - pad;
+            p.vy *= -0.35;
+          }
+        }
 
-          const projX = cx + p.x * perspective;
-          const projY = cy + p.y * perspective;
-          const radius = Math.max(0.8, p.baseSize * perspective);
+        resolveParticleCollisions();
+        resolveParticleCollisions();
 
-          // Depth-based alpha attenuation
-          const depthAlpha = Math.min(1, Math.max(0.18, perspective * 0.85)) * p.alpha;
+        const cardRect = revealCard.getBoundingClientRect();
+        const padMask = 14;
+        const rx = cardRect.left - padMask;
+        const ry = cardRect.top - padMask;
+        const rw = cardRect.width + padMask * 2;
+        const rh = cardRect.height + padMask * 2;
+
+        maskCtx.globalCompositeOperation = 'source-over';
+        maskCtx.clearRect(0, 0, width, height);
+        maskCtx.fillStyle = 'rgba(5, 11, 14, 0.88)';
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          if (
+            p.x > rx - 30 && p.x < rx + rw + 30 &&
+            p.y > ry - 30 && p.y < ry + rh + 30
+          ) {
+            maskCtx.beginPath();
+            maskCtx.arc(p.x, p.y, p.radius * 5.2, 0, Math.PI * 2);
+            maskCtx.fill();
+          }
+        }
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.roundRect(cardRect.left, cardRect.top, cardRect.width, cardRect.height, 24);
+        ctx.clip();
+        ctx.drawImage(maskCanvas, 0, 0, width, height);
+        ctx.restore();
+
+        ctx.globalCompositeOperation = 'lighter';
+
+        const gridCols = 10;
+        const gridRows = 12;
+        const totalCardCells = gridCols * gridRows;
+        const occupiedCells = new Set();
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
           const { r, g, b } = p.color;
 
-          // Outer Soft Bloom Halo
-          const glowRadius = radius * 3.1;
-          const grad = ctx.createRadialGradient(projX, projY, 0, projX, projY, glowRadius);
-          grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${depthAlpha})`);
-          grad.addColorStop(0.38, `rgba(${r}, ${g}, ${b}, ${depthAlpha * 0.38})`);
+          if (
+            p.x >= cardRect.left && p.x <= cardRect.right &&
+            p.y >= cardRect.top && p.y <= cardRect.bottom
+          ) {
+            const gxIdx = Math.min(gridCols - 1, Math.floor(((p.x - cardRect.left) / cardRect.width) * gridCols));
+            const gyIdx = Math.min(gridRows - 1, Math.floor(((p.y - cardRect.top) / cardRect.height) * gridRows));
+            occupiedCells.add(gyIdx * gridCols + gxIdx);
+          }
+
+          const glowRadius = p.radius * 2.6;
+          const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, glowRadius);
+          grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.85})`);
+          grad.addColorStop(0.45, `rgba(${r}, ${g}, ${b}, ${p.alpha * 0.32})`);
           grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
 
           ctx.fillStyle = grad;
           ctx.beginPath();
-          ctx.arc(projX, projY, glowRadius, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, glowRadius, 0, Math.PI * 2);
           ctx.fill();
 
-          // Bright Hot Core
-          ctx.fillStyle = `rgba(240, 255, 250, ${depthAlpha * 0.9})`;
+          ctx.fillStyle = `rgba(245, 255, 252, ${p.alpha * 0.95})`;
           ctx.beginPath();
-          ctx.arc(projX, projY, radius * 0.45, 0, Math.PI * 2);
+          ctx.arc(p.x - p.radius * 0.15, p.y - p.radius * 0.15, p.radius * 0.45, 0, Math.PI * 2);
           ctx.fill();
         }
 
-        // Render Celebratory Light Burst Particles (if triggered)
         for (let i = burstParticles.length - 1; i >= 0; i--) {
           const bp = burstParticles[i];
           bp.x += bp.vx;
           bp.y += bp.vy;
-          bp.z += bp.vz;
-          bp.vx *= 0.96;
-          bp.vy *= 0.96;
-          bp.life -= bp.decay;
+          bp.vx *= 0.95;
+          bp.vy *= 0.95;
+          bp.alpha -= 0.018;
 
-          if (bp.life <= 0) {
+          if (bp.alpha <= 0) {
             burstParticles.splice(i, 1);
             continue;
           }
 
-          const perspective = FOCAL_LENGTH / (FOCAL_LENGTH + bp.z);
-          const bx = cx + bp.x * perspective;
-          const by = cy + bp.y * perspective;
-          const bSize = bp.size * perspective * bp.life;
           const { r, g, b } = bp.color;
-
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${bp.life})`;
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${bp.alpha})`;
           ctx.beginPath();
-          ctx.arc(bx, by, Math.max(0.5, bSize * 2), 0, Math.PI * 2);
+          ctx.arc(bp.x, bp.y, bp.radius, 0, Math.PI * 2);
           ctx.fill();
         }
 
         ctx.globalCompositeOperation = 'source-over';
 
-        // Calculate & Smooth Reveal Percentage
-        const rawRatio = clearedCount / particles.length;
-        // Normalize so ~82% cleared outside central card box maps to 100% reveal
-        const normalizedPct = Math.min(100, (rawRatio / 0.82) * 100);
-        revealRatio += (normalizedPct - revealRatio) * 0.12;
+        const clearedCardCells = totalCardCells - occupiedCells.size;
+        const rawRatio = totalCardCells > 0 ? clearedCardCells / totalCardCells : 0;
+        const normalizedPct = Math.min(100, Math.max(0, ((rawRatio - 0.12) / 0.80) * 100));
+        revealRatio += (normalizedPct - revealRatio) * 0.16;
         updateProgressUI(revealRatio);
 
-        if (revealRatio >= 70 && !celebrationTriggered) {
+        if (revealRatio >= 72 && !celebrationTriggered) {
           triggerCelebrationBurst();
         }
-
-        // Decay pointer velocity
-        pointer.vx *= 0.8;
-        pointer.vy *= 0.8;
       }
 
-      /**
-       * Handle DeviceOrientationEvent (Gyroscope)
-       */
       function handleDeviceOrientation(event) {
         if (event.beta === null || event.gamma === null) return;
-
         gyro.active = true;
 
-        // Capture initial comfortable holding angle as neutral baseline
-        if (gyro.baseBeta === null) {
+        if (gyro.baseBeta === null || gyro.baseGamma === null) {
           gyro.baseBeta = event.beta;
           gyro.baseGamma = event.gamma;
         }
 
-        // Compute delta tilt from holding baseline
-        const deltaGamma = event.gamma - gyro.baseGamma; // Left / Right tilt
-        const deltaBeta = event.beta - gyro.baseBeta;    // Forward / Back tilt
+        const deltaGamma = event.gamma - gyro.baseGamma;
+        const deltaBeta = event.beta - gyro.baseBeta;
 
-        // Apply deadzone of 3 degrees to prevent jitter while resting
-        const deadzone = 3.0;
-        const cleanGamma = Math.abs(deltaGamma) > deadzone ? deltaGamma : 0;
-        const cleanBeta = Math.abs(deltaBeta) > deadzone ? deltaBeta : 0;
-
-        // Normalize tilt forces (-2.5 to +2.5)
-        gyro.forceX = Math.max(-2.6, Math.min(2.6, cleanGamma / 14));
-        gyro.forceY = Math.max(-2.6, Math.min(2.6, cleanBeta / 14));
+        gyro.targetGx = Math.max(-1.25, Math.min(1.25, deltaGamma / 26));
+        gyro.targetGy = Math.max(-1.25, Math.min(1.25, deltaBeta / 26));
       }
 
-      /**
-       * Setup Gyroscope Permissions (including iOS 13+ requestPermission flow)
-       */
-      function setupGyroscope() {
-        if (typeof DeviceOrientationEvent !== 'undefined' &&
-            typeof DeviceOrientationEvent.requestPermission === 'function') {
-          // iOS 13+ requires explicit user gesture to unlock gyroscope
+      function setupSensors() {
+        if (
+          typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function'
+        ) {
           enableGyroBtn.classList.remove('hidden');
           enableGyroBtn.classList.add('flex');
 
-          enableGyroBtn.addEventListener('click', async () => {
-            try {
-              const permissionState = await DeviceOrientationEvent.requestPermission();
-              if (permissionState === 'granted') {
-                window.addEventListener('deviceorientation', handleDeviceOrientation, true);
-                enableGyroBtn.classList.add('hidden');
-                enableGyroBtn.classList.remove('flex');
-                hintText.textContent = 'Gyroscope Active! Tilt your phone to clear particles';
-              } else {
-                hintText.textContent = 'Gyroscope denied — swipe or tap Simulate Tilt';
-              }
-            } catch (err) {
-              console.warn('Gyroscope permission error:', err);
-              hintText.textContent = 'Swipe screen or tap Simulate Tilt to reveal';
-            }
+          enableGyroBtn.addEventListener('click', () => {
+            DeviceOrientationEvent.requestPermission()
+              .then((state) => {
+                if (state === 'granted') {
+                  window.addEventListener('deviceorientation', handleDeviceOrientation);
+                  enableGyroBtn.classList.add('hidden');
+                  enableGyroBtn.classList.remove('flex');
+                  hintText.textContent = 'Gyroscope active — tilt phone toward any corner!';
+                }
+              })
+              .catch(() => {
+                hintText.textContent = 'Touch & drag screen to sweep particles';
+              });
           });
-        } else if ('DeviceOrientationEvent' in window) {
-          // Android / Standard browsers allow direct listener attachment
-          window.addEventListener('deviceorientation', handleDeviceOrientation, true);
+        } else if (typeof window !== 'undefined' && 'DeviceOrientationEvent' in window) {
+          window.addEventListener('deviceorientation', handleDeviceOrientation);
         }
       }
 
-      /**
-       * Pointer / Touch Interaction Handlers (Desktop & Fallback)
-       */
-      let lastPointerX = 0;
-      let lastPointerY = 0;
-
-      function onPointerDown(e) {
+      canvas.addEventListener('pointerdown', (e) => {
         pointer.active = true;
-        const pt = e.touches ? e.touches[0] : e;
-        pointer.x = pt.clientX;
-        pointer.y = pt.clientY;
-        lastPointerX = pt.clientX;
-        lastPointerY = pt.clientY;
-      }
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+        demoCornerIndex = -1;
+        simulateTiltLabel.textContent = 'Tilt to Corner';
+      });
 
-      function onPointerMove(e) {
-        const pt = e.touches ? e.touches[0] : e;
-        if (!pointer.active && e.type === 'mousemove') {
-          pointer.active = true;
-        }
-        pointer.vx = pt.clientX - lastPointerX;
-        pointer.vy = pt.clientY - lastPointerY;
-        pointer.x = pt.clientX;
-        pointer.y = pt.clientY;
-        lastPointerX = pt.clientX;
-        lastPointerY = pt.clientY;
-      }
+      window.addEventListener('pointermove', (e) => {
+        if (!pointer.active) return;
+        pointer.x = e.clientX;
+        pointer.y = e.clientY;
+      });
 
-      function onPointerUp() {
+      window.addEventListener('pointerup', () => {
         pointer.active = false;
-      }
+      });
 
-      // Attach Canvas Pointer & Touch Listeners
-      canvas.addEventListener('mousedown', onPointerDown);
-      window.addEventListener('mousemove', onPointerMove);
-      window.addEventListener('mouseup', onPointerUp);
+      window.addEventListener('pointercancel', () => {
+        pointer.active = false;
+      });
 
-      canvas.addEventListener('touchstart', onPointerDown, { passive: true });
-      canvas.addEventListener('touchmove', onPointerMove, { passive: true });
-      canvas.addEventListener('touchend', onPointerUp);
-
-      // Simulate Tilt Button (Triggers a 2.2-second multi-directional gyro wind sweep)
       simulateTiltBtn.addEventListener('click', () => {
-        simTilt.active = true;
-        simTilt.timer = 125; // ~2 seconds at 60fps
-        simTilt.angle = Math.random() * Math.PI * 2;
+        demoCornerIndex = (demoCornerIndex + 1) % (DEMO_CORNERS.length + 1);
+        if (demoCornerIndex === DEMO_CORNERS.length) {
+          demoCornerIndex = -1;
+          simulateTiltLabel.textContent = 'Tilt to Corner';
+          hintText.textContent = 'Tilt phone or drag to sweep particles into a corner';
+        } else {
+          const corner = DEMO_CORNERS[demoCornerIndex];
+          simulateTiltLabel.textContent = `Corner: ${corner.label}`;
+          hintText.textContent = `Simulating tilt toward ${corner.label}`;
+        }
       });
 
-      // Reset / Replay Button
       resetBtn.addEventListener('click', () => {
-        simTilt.active = false;
+        demoCornerIndex = -1;
+        pointer.active = false;
+        gyro.targetGx = 0;
+        gyro.targetGy = 0;
+        gyro.baseBeta = null;
+        gyro.baseGamma = null;
+        simulateTiltLabel.textContent = 'Tilt to Corner';
+        hintText.textContent = 'Tilt phone or drag to sweep particles into a corner';
         initParticles();
-        hintText.textContent = gyro.active
-          ? 'Tilt your phone to clear particles'
-          : 'Tilt phone or swipe screen to disperse particles';
       });
 
-      // Handle Window Resize
       window.addEventListener('resize', () => {
         resizeCanvas();
+        initParticles();
       });
 
-      // Boot on Window Load
       window.onload = function () {
         resizeCanvas();
         initParticles();
-        setupGyroscope();
-        requestAnimationFrame(animate);
+        setupSensors();
+        animate();
       };
     })();
   </script>
